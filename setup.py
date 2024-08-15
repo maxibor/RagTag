@@ -33,6 +33,7 @@ setup(
               'numpy',
               'pysam',
               'networkx',
+              'natsort'
           ],
     python_requires='>=3.6',
     scripts=scripts,

@@ -28,7 +28,7 @@ import os
 import sys
 import argparse
 from collections import defaultdict
-
+from natsort import natsorted
 import pysam
 
 from ragtag_utilities.utilities import log, run_oae, get_ragtag_version
@@ -38,6 +38,7 @@ from ragtag_utilities.AGPFile import AGPFile
 from ragtag_utilities.Aligner import Minimap2Aligner
 from ragtag_utilities.Aligner import UnimapAligner
 from ragtag_utilities.Aligner import NucmerAligner
+
 
 
 def remove_contained(a):
@@ -76,7 +77,7 @@ def write_orderings(out_agp_file, out_confidence_file, query_file, ordering_dict
     agp.add_comment("# AGP created by RagTag {}".format(get_ragtag_version()))
 
     # Go through the reference sequences in sorted order
-    sorted_ref_headers = sorted(list(ordering_dict.keys()))
+    sorted_ref_headers = natsorted(list(ordering_dict.keys()))
     for ref_header in sorted_ref_headers:
         pid = 1
         pos = 0
